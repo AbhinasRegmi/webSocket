@@ -137,8 +137,8 @@ io.on('connection', (socket) => {
 
                                 //check if the email is valid with external module email-check
                                 emailCheck(data.email).
-                                then( (valid) =>{
-                                    if( valid == true){
+                                then((valid) => {
+                                    if (valid == true) {
 
                                         responsedata.valid = true;
                                         let savethisdata = {
@@ -159,17 +159,17 @@ io.on('connection', (socket) => {
                                                 console.log(err);
                                             }
                                         )
-                                    }else{
+                                    } else {
                                         responsedata.message = "Cannot verify this email.";
-                                    response(responsedata);
+                                        response(responsedata);
 
                                     }
-                                }).catch( err => {
+                                }).catch(err => {
                                     responsedata.message = 'This email cannot be accessed now..';
                                     response(responsedata);
 
                                 })
-                                
+
                             } else {
                                 responsedata.message = "Email already in use...";
                                 response(responsedata);
@@ -224,7 +224,7 @@ io.on('connection', (socket) => {
                     schema.find().limit(30).sort({ $natural: -1 }).then(
                         items => {
                             items.forEach(e => {
-                                io.emit('pastmsg', e.name, e.text);
+                                io.to(socket.id).emit('pastmsg', e.name, e.text);
                             })
                         }
                     )
@@ -308,18 +308,18 @@ io.on('connection', (socket) => {
                     console.log(err);
                 }
 
-            let result = [];
-            if( items != undefined){
-                for( let i = 0; i < items.length; i++){
-                    result.push(items[i].name);
+                let result = [];
+                if (items != undefined) {
+                    for (let i = 0; i < items.length; i++) {
+                        result.push(items[i].name);
+                    }
+                    response(result);
+                } else {
+                    response([]);
                 }
-                response(result);
-            }else{
-                response([]);
-            }
-        })
+            })
 
-    })
+        })
         /////////////////////////////////////////////////////////////////////
 
 
