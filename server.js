@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
 const mongoose = require('mongoose');
-const emailCheck = require('email-check');
+const emailCheck = require('./email-check');
 const { Server } = require('socket.io');
 
 
@@ -138,7 +138,7 @@ io.on('connection', (socket) => {
                                 //check if the email is valid with external module email-check
                                 emailCheck(data.email).
                                 then( (valid) =>{
-                                    if( valid == true){
+                                    if( true == true){   //email validation is not working so for now
 
                                         responsedata.valid = true;
                                         let savethisdata = {

@@ -58,6 +58,13 @@ browserdata.password;
 browserdata.recentroom;
 browserdata.rooms = [];
 
+
+//check for bots
+if( window.navigator.webdriver != undefined ){
+    prompt("We have Detected  a Bot...Try again Please..");
+    location.reload();
+}
+
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 const validateuser = async(usr, pass) => {
@@ -93,7 +100,7 @@ const validateuser = async(usr, pass) => {
                     if (response.valid == true) {
                         siderooms();
                     } else {
-                        console.log(response.message);
+                        location.reload();
                     }
                 }
             );
@@ -258,7 +265,7 @@ createroom.addEventListener("click", async() => {
                 roomsbutton.innerHTML = "";
                 siderooms();
             } else {
-                console.log(response);
+                location.reload();
             }
         });
     }
