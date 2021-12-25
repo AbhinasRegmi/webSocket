@@ -60,8 +60,8 @@ browserdata.rooms = [];
 
 
 //check for bots
-if( window.navigator.webdriver != undefined ){
-    prompt("We have Detected  a Bot...Try again Please..");
+if( window.navigator.webdriver != false ){
+    alert("We have Detected  a Bot...Try again Please..");
     location.reload();
 }
 
